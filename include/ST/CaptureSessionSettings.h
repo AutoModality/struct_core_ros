@@ -307,6 +307,9 @@ struct ST_API CaptureSessionSettings
 
         /** @brief Setting this to true will reduce latency, but might drop more frame */
         bool latencyReducerEnabled = true;
+
+        /** @brief Laser projector power setting from 0.0 to 1.0 inclusive. Projector will only activate if required by streaming configuration. */
+        float initialProjectorPower = 1.f;
     }
     structureCore;
 

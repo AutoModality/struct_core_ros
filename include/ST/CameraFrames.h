@@ -139,6 +139,7 @@ struct ST_API DepthFrame
     /** @brief Returns depth in millimeters at (x,y) if it exists, NAN otherwise. */
     float operator()(int x, int y) const;
 
+
     /** @brief Returns the timestamp of the image data (middle exposure). */
     double timestamp() const;
 

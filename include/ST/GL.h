@@ -35,8 +35,8 @@
 #   endif
 #endif
 
-#if ANDROID || __linux__
-struct AndroidOpenGLContextWrapper;
+#if   __linux__
+struct LinuxOpenGLContextWrapper;
 #endif
 
 namespace ST {
@@ -47,10 +47,10 @@ struct ColorFrame;
 
 //------------------------------------------------------------------------------
 
-#if ANDROID || __linux__
+#if   __linux__
 
 /** @brief Internal typedef to make context cross platform. */
-typedef struct AndroidOpenGLContextWrapper* OpenGLContext;
+typedef struct LinuxOpenGLContextWrapper* OpenGLContext;
 
 /** @brief Creates OpenGL context wrapper from an existing context and surface.
     The context wrapper takes ownership of the context and surface.

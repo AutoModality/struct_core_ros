@@ -204,6 +204,12 @@ struct ST_API ST_ALIGNED(16) Matrix4
     
     Vector3f rvecBetweenPoses(const ST::Matrix4& worldFromFrame) const;
     
+    Matrix4 extrapolatePose(ST::Vector3f& linearVelocityInWorld,
+                            ST::Vector3f& linearAccelerationInWorld,
+                            ST::Vector3f& angularVelocityInFrame,
+                            ST::Vector3f& angularAccelerationInFrame,
+                            const double dt) const;
+    
     void fromExtrinsics(float tx, float ty, float tz, float qx, float qy, float qz, float qw);
 
     inline Vector3f rotationAsZYXEuler() const;
