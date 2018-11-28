@@ -86,6 +86,8 @@ void SCNodelet::onInit()
 	captureSession_.setEventCallback(&SCNodelet::eventCallback, this);
 	captureSession_.setOutputCallback(&SCNodelet::outputCallback, this);
 	captureSession_.startMonitoring(sessionConfig_);
+
+	heartbeat_timer_ = nh_.createTimer(ros::Duration(1.0), &SCNodelet::heartbeatCB, this);
 }
 
 void SCNodelet::eventCallback(void* userdata, ST::CaptureSession* session, const ST::CaptureSessionEventId& event)
@@ -104,7 +106,7 @@ void SCNodelet::captureSessionEventDidOccur(ST::CaptureSession* session, ST::Cap
 	if(event == ST::CaptureSessionEventId::Ready)
 	{
 		ROS_INFO_STREAM(getName() << ": event: received ready");
-		captureSession_.startStreaming();
+		start_streaming_ = true;
 	}
 }
 
@@ -321,7 +323,16 @@ void SCNodelet::populateCamInfo(const ST::Intrinsics &intrinics,
 	cam_info.P[11] = 0;
 }
 
+void SCNodelet::heartbeatCB(const ros::TimerEvent& event)
+{
+	if(start_streaming_)
+	{
+		captureSession_.startStreaming();
+		start_streaming_ = false;
+	}
 }
+
+} //namespace struct_core_ros
 
 #include <pluginlib/class_list_macros.h>
 PLUGINLIB_EXPORT_CLASS(struct_core_ros::SCNodelet, nodelet::Nodelet);

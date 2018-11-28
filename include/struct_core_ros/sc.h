@@ -34,6 +34,9 @@ private:
 
 	std::string frame_id_;
 
+	ros::Timer heartbeat_timer_;
+	bool start_streaming_ = false;
+
 public:
 	void onInit();
 	static void eventCallback(void* userdata, ST::CaptureSession* session, const ST::CaptureSessionEventId& event);
@@ -49,6 +52,7 @@ public:
 	void sendIMU(double timestamp);
 	void populateCamInfo(const ST::Intrinsics &intrinics, const std_msgs::Header header,
 			sensor_msgs::CameraInfo &cam_info);
+	void heartbeatCB(const ros::TimerEvent& event);
 };
 
 } // namespace struct_core
