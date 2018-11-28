@@ -327,6 +327,7 @@ void SCNodelet::heartbeatCB(const ros::TimerEvent& event)
 {
 	if(start_streaming_)
 	{
+		ROS_INFO_STREAM(getName() << ": starting streaming..");
 		captureSession_.startStreaming();
 		start_streaming_ = false;
 	}
