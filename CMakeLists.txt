@@ -35,6 +35,6 @@ set(LINK_LIBRARIES
 
 add_executable(sc src/sc.cpp)
 target_link_libraries(sc ${LINK_LIBRARIES} StructureLinux z rt m usb-1.0)
-add_dependencies(sc ${catkin_EXPORED_TARGETS})
+add_dependencies(sc ${catkin_EXPORTED_TARGETS})
 
 
