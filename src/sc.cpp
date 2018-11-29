@@ -117,6 +117,18 @@ public:
                 break;
             case ST::CaptureSessionSample::Type::SynchronizedFrames:
                 ROS_INFO_THROTTLE(1.0, "Synchronized frames: depth %dx%d visible %dx%d infrared %dx%d\n", sample.depthFrame.width(), sample.depthFrame.height(), sample.visibleFrame.width(), sample.visibleFrame.height(), sample.infraredFrame.width(), sample.infraredFrame.height());
+                if(sample.visibleFrame.isValid())
+                {
+                	handleVis(sample.visibleFrame);
+                }
+                if(sample.depthFrame.isValid())
+                {
+                	handleDepth(sample.depthFrame);
+                }
+                if(sample.infraredFrame.isValid())
+                {
+                    handleIR(sample.infraredFrame);
+                }
                 break;
             case ST::CaptureSessionSample::Type::AccelerometerEvent:
                 ROS_INFO_THROTTLE(1.0, "Accelerometer event: [% .5f % .5f % .5f]\n", sample.accelerometerEvent.acceleration().x, sample.accelerometerEvent.acceleration().y, sample.accelerometerEvent.acceleration().z);
