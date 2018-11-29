@@ -33,7 +33,8 @@ set(LINK_LIBRARIES
   ${catkin_LIBRARIES}
   /usr/local/lib/libStructureLinux.so)
 
-add_library(struct_core_ros src/sc.cpp)
-target_link_libraries(struct_core_ros ${LINK_LIBRARIES} StructureLinux z rt m usb-1.0)
+add_executable(sc src/sc.cpp)
+target_link_libraries(sc ${LINK_LIBRARIES} StructureLinux z rt m usb-1.0)
+add_dependencies(sc ${catkin_EXPORED_TARGETS})
 
 

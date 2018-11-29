@@ -1,5 +1,5 @@
 nodelet_manager:
-  vis_enable: false
-  ir_enable: true
+  vis_enable: true
+  ir_enable: false
   depth_enable: false
   imu_enable: false
