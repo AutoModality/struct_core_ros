@@ -81,7 +81,7 @@ public:
    }
 
     void captureSessionEventDidOccur(ST::CaptureSession *, ST::CaptureSessionEventId event) override {
-        printf("Received capture session event %d (%s)\n", (int)event, ST::CaptureSessionSample::toString(event));
+        ROS_INFO("Received capture session event %d (%s)\n", (int)event, ST::CaptureSessionSample::toString(event));
         switch (event) {
             case ST::CaptureSessionEventId::Ready: {
                 std::unique_lock<std::mutex> u(lock);
@@ -96,38 +96,38 @@ public:
                 cond.notify_all();
             } break;
             default:
-                printf("Event %d unhandled\n", (int)event);
+                ROS_INFO("Event %d unhandled\n", (int)event);
         }
     }
 
     void captureSessionDidOutputSample(ST::CaptureSession *, const ST::CaptureSessionSample& sample) {
-        printf("Received capture session sample of type %d (%s)\n", (int)sample.type, ST::CaptureSessionSample::toString(sample.type));
+        ROS_INFO_THROTTLE(1.0, "Received capture session sample of type %d (%s)\n", (int)sample.type, ST::CaptureSessionSample::toString(sample.type));
         switch (sample.type) {
             case ST::CaptureSessionSample::Type::DepthFrame:
-                printf("Depth frame: size %dx%d\n", sample.depthFrame.width(), sample.depthFrame.height());
+                ROS_INFO_THROTTLE(1.0, "Depth frame: size %dx%d\n", sample.depthFrame.width(), sample.depthFrame.height());
                 handleDepth(sample.depthFrame);
                 break;
             case ST::CaptureSessionSample::Type::VisibleFrame:
-                printf("Visible frame: size %dx%d\n", sample.visibleFrame.width(), sample.visibleFrame.height());
+                ROS_INFO_THROTTLE(1.0, "Visible frame: size %dx%d\n", sample.visibleFrame.width(), sample.visibleFrame.height());
                 handleVis(sample.visibleFrame);
                 break;
             case ST::CaptureSessionSample::Type::InfraredFrame:
-                printf("Infrared frame: size %dx%d\n", sample.infraredFrame.width(), sample.infraredFrame.height());
+                ROS_INFO_THROTTLE(1.0, "Infrared frame: size %dx%d\n", sample.infraredFrame.width(), sample.infraredFrame.height());
                 handleIR(sample.infraredFrame);
                 break;
             case ST::CaptureSessionSample::Type::SynchronizedFrames:
-                printf("Synchronized frames: depth %dx%d visible %dx%d infrared %dx%d\n", sample.depthFrame.width(), sample.depthFrame.height(), sample.visibleFrame.width(), sample.visibleFrame.height(), sample.infraredFrame.width(), sample.infraredFrame.height());
+                ROS_INFO_THROTTLE(1.0, "Synchronized frames: depth %dx%d visible %dx%d infrared %dx%d\n", sample.depthFrame.width(), sample.depthFrame.height(), sample.visibleFrame.width(), sample.visibleFrame.height(), sample.infraredFrame.width(), sample.infraredFrame.height());
                 break;
             case ST::CaptureSessionSample::Type::AccelerometerEvent:
-                printf("Accelerometer event: [% .5f % .5f % .5f]\n", sample.accelerometerEvent.acceleration().x, sample.accelerometerEvent.acceleration().y, sample.accelerometerEvent.acceleration().z);
+                ROS_INFO_THROTTLE(1.0, "Accelerometer event: [% .5f % .5f % .5f]\n", sample.accelerometerEvent.acceleration().x, sample.accelerometerEvent.acceleration().y, sample.accelerometerEvent.acceleration().z);
                 handleAccel(sample.accelerometerEvent);
                 break;
             case ST::CaptureSessionSample::Type::GyroscopeEvent:
-                printf("Gyroscope event: [% .5f % .5f % .5f]\n", sample.gyroscopeEvent.rotationRate().x, sample.gyroscopeEvent.rotationRate().y, sample.gyroscopeEvent.rotationRate().z);
+                ROS_INFO_THROTTLE(1.0, "Gyroscope event: [% .5f % .5f % .5f]\n", sample.gyroscopeEvent.rotationRate().x, sample.gyroscopeEvent.rotationRate().y, sample.gyroscopeEvent.rotationRate().z);
                 handleGyro(sample.gyroscopeEvent);
                 break;
             default:
-                printf("Sample type %d unhandled\n", (int)sample.type);
+                ROS_WARN("Sample type %d unhandled\n", (int)sample.type);
         }
     }
 
