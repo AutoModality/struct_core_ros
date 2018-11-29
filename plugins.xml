@@ -1,7 +1,0 @@
-<library path="lib/libstruct_core_ros">
-  <class name="struct_core_ros/SCNodelet"
-         type="struct_core_ros::SCNodelet"
-         base_class_type="nodelet::Nodelet">
-    <description>structure core ros nodelet</description>
-  </class>
-</library>
