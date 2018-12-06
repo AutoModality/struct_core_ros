@@ -7,7 +7,8 @@ This code has been tested on Ubuntu 16.04 x86_64 and arm64 using the PerceptionE
 
 **Prerequists**
 
-* StructureLinux.so should be in the library path (e.g. /usr/local/bin).
+* StructureLinux.so from the Occipital release should be in the library path (e.g. /usr/local/bin).
+* Header files from the Occipital release should be copied into the include/ST directory
 * Non-root users should be granted permission to use the Structure Core. 
 
 It is strongly reccomended to build and run the Recorder sample application on the target system to confirm everything is working.
