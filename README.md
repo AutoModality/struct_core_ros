@@ -3,15 +3,14 @@ ROS nodelet for Occipital Structure Core
 
 **System Requirements**
 
-This code has been tested on Ubuntu 16.04 x86_64 and arm64 using the PerceptionEngine-Linux-Streaming-0.5.2 package (firmware version 0.8.6).
+This code has been tested on Ubuntu 16.04 x86_64 and arm64 using the StructureSDK-CrossPlatform-0.6.1-2.0 package (firmware version 0.9.3).
 
-**Prerequists**
+**Prerequisites**
 
-* StructureLinux.so from the Occipital release should be in the library path (e.g. /usr/local/bin).
+* Install and buid the linux version of the Struture SDK as docuemnted in the StructureSDK-CrossPlatform-0.6.1-2.0 package
+* It is strongly reccomended to run the Recorder sample application on the target system to confirm everything is working
+* libStructureLinux.so from the Occipital release should be in the library path (e.g. /usr/local/lib)
 * Header files from the Occipital release should be copied into the include/ST directory
-* Non-root users should be granted permission to use the Structure Core. 
-
-It is strongly reccomended to build and run the Recorder sample application on the target system to confirm everything is working.
 
 **Running**
 
