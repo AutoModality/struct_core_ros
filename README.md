@@ -7,8 +7,8 @@ This code has been tested on Ubuntu 16.04 x86_64 and arm64 using the StructureSD
 
 **Prerequisites**
 
-* Install and buid the linux version of the Struture SDK as docuemnted in the StructureSDK-CrossPlatform-0.6.1-2.0 package
-* It is strongly reccomended to run the Recorder sample application on the target system to confirm everything is working
+* Install and build the linux version of the Structure SDK as documented in the StructureSDK-CrossPlatform-0.6.1-2.0 package
+* It is strongly recommended to run the Recorder sample application on the target system to confirm everything is working
 * libStructureLinux.so from the Occipital release should be in the library path (e.g. /usr/local/lib)
 * Header files from the Occipital release should be copied into the include/ST directory
 
